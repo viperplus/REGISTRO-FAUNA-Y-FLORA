@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Relevamiento Ambiental - ESRN</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #f0f9f0 0%, #e8f4e8 50%, #f5f0e8 100%);
+    color: #1a2e1a;
+    line-height: 1.6;
+    padding: 1.5rem 1rem;
+  }
+  .container { max-width: 960px; margin: 0 auto; }
+
+  /* HEADER */
+  .hero {
+    background: linear-gradient(135deg, #1b4a1b 0%, #2d6a2d 50%, #1a5a3a 100%);
+    border-radius: 28px;
+    padding: 2.5rem 2rem;
+    margin-bottom: 2rem;
+    color: #fff;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(26,74,26,0.25);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -30%;
+    width: 400px;
+    height: 400px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 50%;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40%;
+    left: -20%;
+    width: 300px;
+    height: 300px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 50%;
+  }
+  .hero h1 {
+    font-size: 2.4rem;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    position: relative;
+    z-index: 1;
+  }
+  .hero .sub {
+    font-size: 1rem;
+    opacity: 0.85;
+    margin-top: 0.3rem;
+    font-weight: 400;
+    position: relative;
+    z-index: 1;
+  }
+  .hero .badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-top: 1rem;
+    position: relative;
+    z-index: 1;
+  }
+  .hero .badge-row span {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(4px);
+    padding: 0.3rem 1rem;
+    border-radius: 30px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+
+  /* CARD SECTIONS */
+  .card {
+    background: #fff;
+    border-radius: 24px;
+    padding: 1.8rem 2rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 16px rgba(0,20,0,0.06);
+    border: 1px solid rgba(45,106,45,0.08);
+    transition: box-shadow 0.2s;
+  }
+  .card:hover { box-shadow: 0 4px 24px rgba(0,20,0,0.1); }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+  .card-header .icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+  .card-header h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1a3a1a;
+    flex: 1;
+  }
+  .card-header .part-badge {
+    background: #e8f0e8;
+    color: #2a5a2a;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.2rem 0.8rem;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+  }
+  .card > p { color: #4a6a4a; font-size: 0.92rem; margin-bottom: 1rem; }
+
+  /* COLORED ACCENTS PER SECTION */
+  .icon-green { background: #e4f0e4; }
+  .icon-blue { background: #e4ecf5; }
+  .icon-amber { background: #f5ede4; }
+  .icon-teal { background: #e4f0ed; }
+  .icon-purple { background: #ede4f5; }
+  .icon-coral { background: #f5e4e4; }
+  .icon-indigo { background: #e4e4f5; }
+  .icon-emerald { background: #e4f5ea; }
+
+  /* METODO BOX */
+  .metodo {
+    background: #f4f9f4;
+    border-radius: 16px;
+    padding: 0.8rem 1.2rem;
+    margin-bottom: 1rem;
+    border: 1px solid #d4e4d4;
+    font-size: 0.88rem;
+    color: #2a4a2a;
+    display: flex;
+    gap: 0.8rem;
+    align-items: flex-start;
+  }
+  .metodo .metodo-icon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+  .metodo strong { color: #1a4a1a; }
+
+  /* INFO BOX */
+  .info-box {
+    background: #f4f9f4;
+    border-radius: 14px;
+    padding: 0.8rem 1.2rem;
+    margin-bottom: 1rem;
+    border: 1px dashed #8ab88a;
+    font-size: 0.88rem;
+    color: #2a4a2a;
+  }
+  .info-box strong { color: #1a4a1a; }
+
+  /* SUB-SECTIONS */
+  .sub-card {
+    background: #fafcfa;
+    border-radius: 16px;
+    padding: 1rem 1.3rem;
+    margin-bottom: 1rem;
+    border: 1px solid #e4eee4;
+  }
+  .sub-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1a4a1a;
+    margin-bottom: 0.6rem;
+  }
+  .sub-card h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #2a5a2a;
+    margin: 0.8rem 0 0.3rem;
+  }
+
+  /* GRIDS */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+  .grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem 1.5rem; }
+
+  /* FORM ELEMENTS */
+  label { display: block; font-size: 0.85rem; font-weight: 500; margin-bottom: 0.2rem; color: #2a4a2a; }
+  input, textarea, select {
+    width: 100%;
+    padding: 0.55rem 0.8rem;
+    border: 1.5px solid #d4e4d4;
+    border-radius: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88rem;
+    background: #fff;
+    transition: all 0.2s;
+  }
+  input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #2d6a2d;
+    box-shadow: 0 0 0 4px rgba(45,106,45,0.1);
+  }
+  textarea { resize: vertical; min-height: 56px; }
+  .field { margin-bottom: 0.7rem; }
+  .checkbox-group { display: flex; flex-wrap: wrap; gap: 0.3rem 1rem; padding: 0.2rem 0; }
+  .checkbox-group label {
+    font-weight: 400;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    cursor: pointer;
+    font-size: 0.85rem;
+    padding: 0.3rem 0.6rem;
+    background: #f4f9f4;
+    border-radius: 10px;
+    border: 1px solid #e4eee4;
+    transition: all 0.15s;
+  }
+  .checkbox-group label:has(:checked) {
+    background: #dcecdc;
+    border-color: #6a9a6a;
+  }
+  .checkbox-group input[type="checkbox"],
+  .checkbox-group input[type="radio"] { width: auto; accent-color: #2d6a2d; }
+
+  /* TABLES */
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.85rem;
+    margin: 0.5rem 0;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  th, td {
+    border: 1px solid #dce8dc;
+    padding: 0.45rem 0.6rem;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: #eaf2ea;
+    font-weight: 600;
+    color: #1a4a1a;
+    font-size: 0.78rem;
+    letter-spacing: 0.3px;
+  }
+  td input, td textarea {
+    border: none;
+    padding: 0.25rem 0;
+    border-radius: 0;
+    border-bottom: 1.5px dashed #c8dcc8;
+    background: transparent;
+    width: 100%;
+    font-size: 0.83rem;
+  }
+  td input:focus, td textarea:focus { border-bottom-color: #2d6a2d; box-shadow: none; }
+
+  /* DIAGRAM */
+  pre.diagram {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    line-height: 1.3;
+    background: #f4f9f4;
+    padding: 0.8rem;
+    border: 1px solid #d4e4d4;
+    border-radius: 12px;
+    overflow-x: auto;
+    color: #2a4a2a;
+  }
+
+  /* ROLE GRID */
+  .role-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+  }
+  .role-item {
+    background: #f4f9f4;
+    border-radius: 12px;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid #dce8dc;
+    font-size: 0.85rem;
+    color: #2a4a2a;
+  }
+  .role-item strong { color: #1a4a1a; }
+
+  /* BUTTON */
+  .btn-print {
+    display: block;
+    width: fit-content;
+    margin: 2rem auto 1rem;
+    padding: 0.9rem 3rem;
+    background: linear-gradient(135deg, #1b4a1b, #2d6a2d);
+    color: #fff;
+    border: none;
+    border-radius: 16px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 4px 16px rgba(26,74,26,0.25);
+  }
+  .btn-print:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(26,74,26,0.3); }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 1.6rem; }
+    .card { padding: 1.2rem 1rem; }
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .role-grid { grid-template-columns: 1fr; }
+  }
+
+  hr { border: none; border-top: 1px solid #dce8dc; margin: 0.8rem 0; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>&#127758; Relevamiento Ambiental</h1>
+    <p class="sub">Gu&iacute;a de campo &bull; Inventario Territorial &bull; ESRN</p>
+    <div class="badge-row">
+      <span>&#128200; Trabajo en equipo</span>
+      <span>&#127937; Investigaci&oacute;n de campo</span>
+      <span>&#128221; Informe final</span>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <div class="card">
+    <div class="card-header">
+      <div class="icon icon-green">&#128214;</div>
+      <h2>Introducci&oacute;n</h2>
+    </div>
+    <p>El relevamiento ambiental es una herramienta cient&iacute;fica y social que permite conocer el estado de un territorio. No se trata solo de observar el paisaje, sino de &quot;leer&quot; los procesos ecol&oacute;gicos y las huellas que las sociedades dejan en &eacute;l. Como investigadores de campo, van a aplicar metodolog&iacute;as para evaluar la salud de los ecosistemas locales.</p>
+
+    <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1rem;">
+      <span style="background:#e4f0e4;padding:0.3rem 0.8rem;border-radius:10px;font-size:0.8rem;">&#127793; Reconocer componentes naturales</span>
+      <span style="background:#e4f0e4;padding:0.3rem 0.8rem;border-radius:10px;font-size:0.8rem;">&#128200; Registrar informaci&oacute;n ambiental</span>
+      <span style="background:#e4f0e4;padding:0.3rem 0.8rem;border-radius:10px;font-size:0.8rem;">&#128269; Diferenciar impacto humano</span>
+      <span style="background:#e4f0e4;padding:0.3rem 0.8rem;border-radius:10px;font-size:0.8rem;">&#128203; Elaborar inventario de recursos</span>
+      <span style="background:#e4f0e4;padding:0.3rem 0.8rem;border-radius:10px;font-size:0.8rem;">&#127758; Interpretar estado de conservaci&oacute;n</span>
+    </div>
+
+    <div class="grid-2" style="font-size:0.85rem;color:#3a5a3a;">
+      <div><strong>&#128718; Materiales:</strong><br>
+      Carpeta, l&aacute;piz, celular con c&aacute;mara y GPS, cinta m&eacute;trica, br&uacute;jula, tiras de pH, frasco transparente, app <strong>Plant Parent</strong>, ca&ntilde;o de PVC corto o botella pl&aacute;stica cortada, cron&oacute;metro del celular.</div>
+      <div><strong>&#128101; Organizaci&oacute;n:</strong><br>
+      Grupos de 3-4 integrantes. Cada grupo releva un sector diferente. Todos participan de las observaciones, mediciones y registros.</div>
+    </div>
+
+    <div style="margin-top:1rem;">
+      <p style="font-size:0.85rem;font-weight:600;color:#1a4a1a;margin-bottom:0.5rem;">&#128736;&#65039; Roles del equipo:</p>
+      <div class="role-grid">
+        <div class="role-item"><strong>&#128200; Coordinador de Mediciones:</strong> supervisa los protocolos</div>
+        <div class="role-item"><strong>&#128221; Registrador de Datos:</strong> completa planillas y verifica campos</div>
+        <div class="role-item"><strong>&#128247; Fot&oacute;grafo T&eacute;cnico:</strong> fotos en plano general y primer plano con escala</div>
+        <div class="role-item"><strong>&#127758; Navegador / Cart&oacute;grafo:</strong> opera GPS, br&uacute;jula y dibuja el croquis</div>
+      </div>
+      <p style="font-size:0.82rem;color:#5a7a5a;margin-top:0.6rem;">&#9888;&#65039; <strong>&Eacute;tica del investigador:</strong> Observar sin alterar. No arrancar vegetaci&oacute;n, no molestar a la fauna, no dejar residuos ni encender fuego. Si encuentran patrimonio hist&oacute;rico o arqueol&oacute;gico (pircas antiguas, corrales de piedra, fragmentos cer&aacute;micos o arte rupestre), reg&iacute;strenlo con fotos pero jam&aacute;s lo toquen ni alteren su ubicaci&oacute;n.</p>
+    </div>
+  </div>
+
+  <!-- PARTE A -->
+  <div class="card">
+    <div class="card-header">
+      <div class="icon icon-blue">&#127758;</div>
+      <h2>Parte A &mdash; Georreferenciaci&oacute;n y meteorolog&iacute;a</h2>
+      <span class="part-badge">INICIO</span>
+    </div>
+    <p>Al llegar al sector, busquen un punto elevado para establecer la <strong>&quot;Estaci&oacute;n Base&quot;</strong>. Observen en silencio durante 2 minutos para calibrar los sentidos. Usen el celular (Br&uacute;jula, Mapas, clima) para registrar las variables al inicio y al cierre.</p>
+
+    <div class="metodo">
+      <span class="metodo-icon">&#128161;</span>
+      <div><strong>Metodolog&iacute;a:</strong> Cada integrante observa el paisaje en silencio 2 minutos. Discutan en grupo y completen los campos entre todos. Tomen coordenadas GPS al inicio y al final. Registren el estado del tiempo en ambos momentos para evaluar cambios durante el d&iacute;a.</div>
+    </div>
+
+    <div class="sub-card">
+      <h3>A.1. Datos del equipo</h3>
+      <div class="grid-2">
+        <div class="field"><label>Instituci&oacute;n</label><input type="text" placeholder="ESRN N.&ordm;"></div>
+        <div class="field"><label>Proyecto / Espacio Curricular</label><input type="text"></div>
+        <div class="field"><label>Localidad / Paraje</label><input type="text"></div>
+        <div class="field"><label>Sector / Grupo N.&ordm;</label><input type="text"></div>
+        <div class="field" style="grid-column:1/-1;"><label>Integrantes</label><input type="text" placeholder="Nombres y apellidos"></div>
+      </div>
+    </div>
+
+    <div class="sub-card">
+      <h3>A.2. Variables f&iacute;sico-ambientales</h3>
+      <table>
+        <thead>
+          <tr><th>Par&aacute;metro</th><th>Inicio (llegada)</th><th>Cierre (salida)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Fecha</td><td><input type="date"></td><td><input type="date"></td></tr>
+          <tr><td>Hora</td><td><input type="time"></td><td><input type="time"></td></tr>
+          <tr><td>Coordenadas</td><td><input type="text" placeholder="Lat / Lon"></td><td><input type="text"></td></tr>
+          <tr><td>Altitud (msnm)</td><td><input type="text"></td><td><input type="text"></td></tr>
+          <tr><td>Temperatura (&deg;C)</td><td><input type="text"></td><td><input type="text"></td></tr>
+          <tr><td>Orientaci&oacute;n de la ladera / pendiente</td><td colspan="2"><div class="checkbox-group">
+            <label><input type="checkbox"> Norte (m&aacute;s sol, m&aacute;s seco)</label>
+            <label><input type="checkbox"> Sur (m&aacute;s h&uacute;medo, retiene nieve/agua)</label>
+            <label><input type="checkbox"> Este</label>
+            <label><input type="checkbox"> Oeste</label>
+            <label><input type="checkbox"> Terreno mayormente plano / Valle</label>
+          </div></td></tr>
+        </tbody>
+      </table>
+
+      <div class="grid-2" style="gap:0.5rem;margin-top:0.5rem;">
+        <div>
+          <p style="font-size:0.82rem;font-weight:600;color:#1a4a1a;">&#9925; Cielo &rarr; Inicio:</p>
+          <div class="checkbox-group">
+            <label><input type="checkbox"> Despejado</label>
+            <label><input type="checkbox"> Parc. nublado</label>
+            <label><input type="checkbox"> Nublado total</label>
+            <label><input type="checkbox"> Lluvia</label>
+          </div>
+        </div>
+        <div>
+          <p style="font-size:0.82rem;font-weight:600;color:#1a4a1a;">&#9925; Cielo &rarr; Cierre:</p>
+          <div class="checkbox-group">
+            <label><input type="checkbox"> Despejado</label>
+            <label><input type="checkbox"> Parc. nublado</label>
+            <label><input type="checkbox"> Nublado total</label>
+            <label><input type="checkbox"> Lluvia</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2" style="gap:0.5rem;">
+        <div>
+          <p style="font-size:0.82rem;font-weight:600;color:#1a4a1a;">&#127788; Viento &rarr; Inicio:</p>
+          <div class="checkbox-group">
+            <label><input type="checkbox"> Calma</label>
+            <label><input type="checkbox"> Brisa</label>
+            <label><input type="checkbox"> Fuerte</label>
+          </div>
+          <div class="checkbox-group" style="margin-top:0.2rem;">
+            <label><input type="checkbox"> N</label> <label><input type="checkbox"> NE</label> <label><input type="checkbox"> E</label>
+            <label><input type="checkbox"> SE</label> <label><input type="checkbox"> S</label> <label><input type="checkbox"> SO</label>
+            <label><input type="checkbox"> O</label> <label><input type="checkbox"> NO</label>
+          </div>
+        </div>
+        <div>
+          <p style="font-size:0.82rem;font-weight:600;color:#1a4a1a;">&#127788; Viento &rarr; Cierre:</p>
+          <div class="checkbox-group">
+            <label><input type="checkbox"> Calma</label>
+            <label><input type="checkbox"> Brisa</label>
+            <label><input type="checkbox"> Fuerte</label>
+          </div>
+          <div class="checkbox-group" style="margin-top:0.2rem;">
+            <label><input type="checkbox"> N</label> <label><input type="checkbox"> NE</label> <label><input type="checkbox"> E</label>
+            <label><input type="checkbox"> SE</label> <label><input type="checkbox"> S</label> <label><input type="checkbox"> SO</label>
+            <label><input type="checkbox"> O</label> <label><input type="checkbox"> NO</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PARTE B -->
+  <div class="card">
+    <div class="card-header">
+      <div class="icon icon-amber">&#127793;</div>
+      <h2>Parte B &mdash; Inventario de recursos naturales</h2>
+      <span class="part-badge">OBSERVAR</span>
+    </div>
+    <p>Recorran el sector en abanico o en l&iacute;nea recta (transecta de 50 m). Clasifiquen la presencia y estado de los recursos. <strong>Eviten</strong> palabras subjetivas como &quot;lindo&quot; o &quot;feo&quot;; usen descripciones t&eacute;cnicas (tama&ntilde;o, color, extensi&oacute;n, alteraci&oacute;n).</p>
+
+    <div class="metodo">
+      <span class="metodo-icon">&#128221;</span>
+      <div><strong>Metodolog&iacute;a:</strong> Avancen y det&eacute;nganse en cada recurso. Marquen "S&iacute;" o "No". En "Descripci&oacute;n t&eacute;cnica" anoten dimensi&oacute;n, estado, coloraci&oacute;n y especies asociadas. Numeren cada foto y as&oacute;cienla al recurso.</div>
+    </div>
+
+    <table>
+      <thead>
+        <tr><th>Recurso natural</th><th style="width:70px;">Presente</th><th style="width:60px;">Foto</th><th>Descripci&oacute;n t&eacute;cnica</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Cuerpos de agua (arroyos, vertientes, r&iacute;os, lagunas)</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td>Humedales / Mallines</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td>Afloramientos geol&oacute;gicos (rocas, bardas)</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td>Geoformas (barrancas, ca&ntilde;adones, valles)</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td>Bosque / Cobertura forestal</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td>Matorral / Monte estepario</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td>Pastizales naturales</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td>Minerales / Tipos de rocas</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td>Flora nativa</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td>Fauna silvestre</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td>Otros</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+      </tbody>
+    </table>
+
+    <div class="sub-card" style="margin-top:1rem;">
+      <h3>&#128161; Reflexionen en equipo</h3>
+      <div class="field"><label>&iquest;Qu&eacute; recursos tienen mayor potencial tur&iacute;stico? &iquest;Por qu&eacute;?</label><textarea rows="2"></textarea></div>
+      <div class="field"><label>&iquest;Cu&aacute;les son m&aacute;s vulnerables al cambio clim&aacute;tico o la actividad humana?</label><textarea rows="2"></textarea></div>
+    </div>
+  </div>
+
+  <!-- PARTE C -->
+  <div class="card">
+    <div class="card-header">
+      <div class="icon icon-teal">&#127811;</div>
+      <h2>Parte C &mdash; Salud del suelo</h2>
+      <span class="part-badge">MEDIR</span>
+    </div>
+    <p>El suelo es el sost&eacute;n del ecosistema. Delimiten un cuadrado de <strong>10 m x 10 m</strong> (12-13 pasos por lado).</p>
+
+    <div class="metodo">
+      <span class="metodo-icon">&#128299;</span>
+      <div><strong>Metodolog&iacute;a:</strong> Un integrante observa desde el centro, otro desde el borde. Tomen una muestra de los primeros 5 cm y fr&oacute;tenla entre los dedos. Para la prueba de compactaci&oacute;n, intenten enterrar un l&aacute;piz verticalmente. Fotograf&iacute;en la erosi&oacute;n con una moneda o regla como escala.</div>
+    </div>
+
+    <pre class="diagram">
+                       10 metros
+            +---------------------------+
+            |   [Muestra textura]        |
+            |        o                   |
+            |                            |
+    10 m    |      [Observador           | 10 m
+            |       en centro]           |
+            |                            |
+            | o [Prueba compactaci&oacute;n]    |
+            +---------------------------+
+                       10 metros
+    </pre>
+
+    <div class="sub-card">
+      <h3>C.1. &iquest;Cu&aacute;nto suelo est&aacute; cubierto por vegetaci&oacute;n?</h3>
+      <div class="checkbox-group">
+        <label><input type="radio" name="cobertura"> <strong>Excelente:</strong> 76%-100% &mdash; suelo protegido, sin erosi&oacute;n</label>
+        <label><input type="radio" name="cobertura"> <strong>Bueno:</strong> 51%-75% &mdash; algunos parches de suelo desnudo</label>
+        <label><input type="radio" name="cobertura"> <strong>Moderado:</strong> 26%-50% &mdash; mitad del &aacute;rea descubierta</label>
+        <label><input type="radio" name="cobertura"> <strong>Cr&iacute;tico:</strong> 0%-25% &mdash; suelo muy desprotegido</label>
+      </div>
+    </div>
+
+    <div class="sub-card">
+      <h3>C.2. &iquest;C&oacute;mo es el suelo?</h3>
+      <h4>Color</h4>
+      <div class="checkbox-group">
+        <label><input type="checkbox"> Oscuro / Negro (materia org&aacute;nica)</label>
+        <label><input type="checkbox"> Marr&oacute;n claro / Gris&aacute;ceo</label>
+        <label><input type="checkbox"> Rojizo</label>
+        <label><input type="checkbox"> Amarillento / Arenoso</label>
+      </div>
+      <h4>Textura (marquen solo una)</h4>
+      <div class="checkbox-group">
+        <label><input type="radio" name="textura"> <strong>Arenoso:</strong> &aacute;spero, no se adhiere, granos visibles</label>
+        <label><input type="radio" name="textura"> <strong>Arcilloso:</strong> pegajoso, brilla, se moldea como plastilina</label>
+        <label><input type="radio" name="textura"> <strong>Franco/Limoso:</strong> suave como talco, equilibrado</label>
+        <label><input type="radio" name="textura"> <strong>Pedregoso:</strong> dominan las piedras, no se puede trabajar</label>
+      </div>
+    </div>
+
+    <div class="sub-card">
+      <h3>C.3. Compactaci&oacute;n y erosi&oacute;n</h3>
+      <h4>Prueba del l&aacute;piz</h4>
+      <div class="checkbox-group">
+        <label><input type="radio" name="compact"> <strong>Baja:</strong> el l&aacute;piz entra +5 cm f&aacute;cilmente (suelo saludable)</label>
+        <label><input type="radio" name="compact"> <strong>Moderada:</strong> entra 1-5 cm con presi&oacute;n</label>
+        <label><input type="radio" name="compact"> <strong>Alta:</strong> no entra ni 1 cm (suelo compactado como costra)</label>
+      </div>
+
+      <h4>Evidencias de erosi&oacute;n</h4>
+      <table>
+        <thead>
+          <tr><th>Tipo</th><th style="width:60px;">Presente</th><th style="width:100px;">Gravedad</th><th>Descripci&oacute;n</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>C&aacute;rcavas / Zanjas</td><td><input type="text"></td><td><input type="text" placeholder="Leve/Mod/Severa"></td><td><input type="text"></td></tr>
+          <tr><td>Surcos de lluvia</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+          <tr><td>Ra&iacute;ces expuestas</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+          <tr><td>Grietas por sequedad</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+          <tr><td>Acumulaci&oacute;n de arena</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+        </tbody>
+      </table>
+      <div class="field" style="margin-top:0.5rem;"><label>&iquest;Por qu&eacute; el suelo presenta estas caracter&iacute;sticas?</label><textarea rows="2"></textarea></div>
+    </div>
+
+    <div class="sub-card">
+      <h3>C.4. Biota y din&aacute;mica del agua &mdash; &iexcl;el suelo est&aacute; vivo!</h3>
+
+      <h4>&#128027; Macrofauna visible</h4>
+      <p style="font-size:0.82rem;color:#5a7a5a;">Al tomar la muestra de los primeros 5 cm, &iquest;observan vida animal a simple vista?</p>
+      <div class="checkbox-group">
+        <label><input type="radio" name="macrofauna"> S&Iacute;</label>
+        <label><input type="radio" name="macrofauna"> NO</label>
+      </div>
+      <div class="field"><label>&iquest;Qu&eacute; encontraron? (lombrices, bichos bolita, hormigas, escarabajos, ra&iacute;ces vivas finas)</label><input type="text"></div>
+
+      <h4>&#128166; Prueba de infiltraci&oacute;n casera</h4>
+      <p style="font-size:0.82rem;color:#5a7a5a;">Claven el ca&ntilde;o de PVC (o la botella cortada) unos 3 cm en el suelo para que no se escape el agua por los costados. Viertan un vaso de agua dentro y midan con el cron&oacute;metro del celular cu&aacute;ntos segundos tarda el suelo en absorberla por completo.</p>
+      <div class="field"><label>&#9202; Tiempo de infiltraci&oacute;n</label><input type="text" placeholder="_________ segundos"></div>
+      <div class="checkbox-group">
+        <label><input type="radio" name="infiltracion"> <strong>Infiltraci&oacute;n r&aacute;pida:</strong> suelo poroso, saludable, absorbe de inmediato</label>
+        <label><input type="radio" name="infiltracion"> <strong>Infiltraci&oacute;n lenta / Nula:</strong> suelo compactado, el agua se estanca; peligro de erosi&oacute;n</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- PARTE D -->
+  <div class="card">
+    <div class="card-header">
+      <div class="icon icon-blue">&#128167;</div>
+      <h2>Parte D &mdash; Calidad del agua</h2>
+      <span class="part-badge">SI HAY AGUA</span>
+    </div>
+    <p>Solo si hay un curso o cuerpo de agua en el sector.</p>
+
+    <div class="metodo">
+      <span class="metodo-icon">&#9888;&#65039;</span>
+      <div><strong>Metodolog&iacute;a:</strong> Ac&eacute;rquense con precauci&oacute;n. No ingresen si la corriente es fuerte. Sumerjan el frasco a media profundidad, en sentido contrario a la corriente, sin remover el sedimento. Para el pH: sumerjan la tira 2 segundos, esperen 30 segundos y comparen con la tabla.</div>
+    </div>
+
+    <div class="sub-card">
+      <h3>D.1. Examen f&iacute;sico-qu&iacute;mico</h3>
+      <div class="grid-3">
+        <div class="field"><label>&#127777; Temperatura</label><input type="text" placeholder="&deg;C"></div>
+        <div class="field"><label>&#128306; Color</label><input type="text" placeholder="transparente, marr&oacute;n..."></div>
+        <div class="field"><label>&#128066; Olor</label><input type="text" placeholder="sin olor, a tierra..."></div>
+      </div>
+
+      <h4>&#128300; pH</h4>
+      <div class="field"><label>Valor:</label><input type="text" placeholder="Ej: 6.5"></div>
+      <div class="checkbox-group">
+        <label><input type="radio" name="ph"> &Aacute;cido (&lt;6.5)</label>
+        <label><input type="radio" name="ph"> Neutro (6.5-7.5)</label>
+        <label><input type="radio" name="ph"> Alcalino (&gt;7.5)</label>
+      </div>
+
+      <h4>&#128372; Turbidez</h4>
+      <p style="font-size:0.82rem;color:#5a7a5a;">Sostengan el frasco contra una hoja blanca a plena luz.</p>
+      <div class="checkbox-group">
+        <label><input type="radio" name="turbidez"> <strong>Cristalina:</strong> se lee texto a trav&eacute;s del frasco</label>
+        <label><input type="radio" name="turbidez"> <strong>Levemente turbia:</strong> opaca pero se ve el fondo</label>
+        <label><input type="radio" name="turbidez"> <strong>Muy turbia:</strong> marr&oacute;n, no se ve a trav&eacute;s</label>
+      </div>
+    </div>
+
+    <div class="sub-card">
+      <h3>D.2. Contaminaci&oacute;n y vegetaci&oacute;n ribere&ntilde;a</h3>
+      <table>
+        <thead>
+          <tr><th>Indicador</th><th style="width:55px;">Presente</th><th style="width:80px;">Intensidad</th><th style="width:90px;">Origen</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Residuos flotantes</td><td><input type="text"></td><td><input type="text" placeholder="Baja/Media/Alta"></td><td><input type="text" placeholder="Natural/Humano"></td></tr>
+          <tr><td>Espuma</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+          <tr><td>Manchas de aceite</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+          <tr><td>Mal olor</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+          <tr><td>Animales muertos</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+        </tbody>
+      </table>
+
+      <h4 style="margin-top:0.8rem;">&#127795; Vegetaci&oacute;n en la orilla (5 m desde el agua)</h4>
+      <div class="checkbox-group">
+        <label><input type="radio" name="ribera"> <strong>Amortiguadora:</strong> bosque denso y continuo que protege la orilla</label>
+        <label><input type="radio" name="ribera"> <strong>Fragmentada:</strong> mezcla de vegetaci&oacute;n y tierra desmoronada</label>
+        <label><input type="radio" name="ribera"> <strong>Degradada:</strong> orilla pelada, erosionada o modificada</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- PARTE E -->
+  <div class="card">
+    <div class="card-header">
+      <div class="icon icon-purple">&#128029;</div>
+      <h2>Parte E &mdash; Biodiversidad</h2>
+      <span class="part-badge">CENSAR</span>
+    </div>
+    <p>La biodiversidad indica la estabilidad del ecosistema. Caminen a paso muy lento durante <strong>10 minutos</strong> y registren todas las especies que vean o escuchen.</p>
+
+    <div class="metodo">
+      <span class="metodo-icon">&#128247;</span>
+      <div><strong>Metodolog&iacute;a:</strong> Un integrante registra en la tabla, otro fotografía. Usen la app <strong>Plant Parent</strong> para identificar plantas desconocidas. Para fauna: busquen huellas, fecas, madrigueras y escuchen cantos. No manipulen animales.</div>
+    </div>
+
+    <div class="info-box">
+      <strong>&#127793; Clasificaci&oacute;n:</strong><br>
+      <strong>Nativa</strong> = especie originaria de la regi&oacute;n (coir&oacute;n, jarilla, neneo, calafate).<br>
+      <strong>Ex&oacute;tica</strong> = introducida por el ser humano, puede volverse invasora (rosa mosqueta, pinos, sauces).
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
+      <div class="info-box" style="margin-bottom:0;">
+        <strong>&#127793; Estrato vegetal dominante:</strong><br>
+        <p style="font-size:0.82rem;color:#5a7a5a;">&iquest;En qu&eacute; altura se concentra la mayor cantidad de plantas?</p>
+        <div class="checkbox-group" style="flex-direction:column;gap:0.2rem;">
+          <label><input type="radio" name="estrato"> <strong>Herb&aacute;ceo:</strong> al ras del suelo, pastos, coirones</label>
+          <label><input type="radio" name="estrato"> <strong>Arbustivo:</strong> altura media, jarillas, neneos, calafates</label>
+          <label><input type="radio" name="estrato"> <strong>Arb&oacute;reo:</strong> &aacute;rboles altos, copas continuas</label>
+        </div>
+      </div>
+      <div class="info-box" style="margin-bottom:0;">
+        <strong>&#128021; Fauna dom&eacute;stica / Asilvestrada:</strong><br>
+        <p style="font-size:0.82rem;color:#5a7a5a;">Adem&aacute;s de fauna silvestre, &iquest;hay animales introducidos o sus rastros (bosta, pisadas)?</p>
+        <div class="checkbox-group" style="flex-direction:column;gap:0.2rem;">
+          <label><input type="checkbox"> Vacas / Caballos</label>
+          <label><input type="checkbox"> Ovejas / Chivas</label>
+          <label><input type="checkbox"> Liebre europea</label>
+          <label><input type="checkbox"> Jabal&iacute;</label>
+          <label><input type="checkbox"> Perros sueltos</label>
+        </div>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr><th style="width:30px;">N.&ordm;</th><th>Especie</th><th style="width:80px;">Reino</th><th style="width:100px;">Evidencia</th><th style="width:70px;">Origen</th><th>Observaciones</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td>2</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td>3</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td>4</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td>5</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td>6</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td>7</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td>8</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td>9</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td>10</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+      </tbody>
+    </table>
+
+    <div class="field" style="margin-top:0.8rem;">
+      <label>&#128161; &iquest;Qu&eacute; especies cumplen un papel importante en el ecosistema? &iquest;Por qu&eacute;?</label>
+      <textarea rows="2"></textarea>
+    </div>
+  </div>
+
+  <!-- PARTE F -->
+  <div class="card">
+    <div class="card-header">
+      <div class="icon icon-coral">&#128683;</div>
+      <h2>Parte F &mdash; Impacto humano</h2>
+      <span class="part-badge">REGISTRAR</span>
+    </div>
+    <p>Eval&uacute;en el grado de modificaci&oacute;n del espacio natural por actividades humanas.</p>
+
+    <div class="metodo">
+      <span class="metodo-icon">&#128270;</span>
+      <div><strong>Metodolog&iacute;a:</strong> <strong>Grado 0</strong> = no se observa. <strong>Grado 1</strong> = aparece 1-2 veces. <strong>Grado 2</strong> = 3+ veces o rastro continuo. Tomen al menos 3 fotos con un elemento de referencia (mochila, botella).</div>
+    </div>
+
+    <table>
+      <thead>
+        <tr><th>Impacto</th><th style="width:50px;">Grado</th><th style="width:50px;">Foto</th><th style="width:90px;">Estado</th><th>Descripci&oacute;n</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Basura / Residuos</td><td><input type="text"></td><td><input type="text"></td><td><input type="text" placeholder="Antiguo/Reciente"></td><td><input type="text"></td></tr>
+        <tr><td>Fogones / Carb&oacute;n</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td>Senderos informales</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td>Huellas de veh&iacute;culos</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td>Tala / Poda</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td>Ganado / Pastoreo</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td>Construcciones</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td>Modificaci&oacute;n de cauces</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td>Contaminaci&oacute;n ac&uacute;stica o visual (ruidos de motores, rutas, cables, carteles)</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td>Alteraci&oacute;n del patrimonio local (pircas rotas, pintadas sobre rocas hist&oacute;ricas)</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- PARTE G -->
+  <div class="card">
+    <div class="card-header">
+      <div class="icon icon-indigo">&#128202;</div>
+      <h2>Parte G &mdash; Diagn&oacute;stico de salud ambiental</h2>
+      <span class="part-badge">SINTETIZAR</span>
+    </div>
+    <p>Antes de irse, re&uacute;nanse en la Estaci&oacute;n Base y discutan el estado de cada componente. Esta tabla debe completarse en equipo, no individualmente.</p>
+
+    <div class="metodo">
+      <span class="metodo-icon">&#128200;</span>
+      <div><strong>Metodolog&iacute;a:</strong> Usen datos concretos de las partes anteriores (porcentajes, texturas, pH, frecuencias). No dejen casilleros vac&iacute;os; si falta info, anoten "sin dato".</div>
+    </div>
+
+    <table>
+      <thead>
+        <tr><th style="width:90px;">Componente</th><th style="width:210px;">Estado</th><th>Evidencias (datos concretos)</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>&#127811; Suelo</strong></td>
+          <td>
+            <select style="width:100%;">
+              <option value="">Elegir</option>
+              <option>Bueno (cobertura &gt;75%, sin erosi&oacute;n)</option>
+              <option>Regular (cobertura media, erosi&oacute;n leve)</option>
+              <option>Cr&iacute;tico (compactado, c&aacute;rcavas profundas)</option>
+            </select>
+          </td>
+          <td><textarea rows="1" style="min-height:36px;"></textarea></td>
+        </tr>
+        <tr>
+          <td><strong>&#128167; Agua</strong></td>
+          <td>
+            <select style="width:100%;">
+              <option value="">Elegir</option>
+              <option>Bueno (cristalina, sin olor, ribera intacta)</option>
+              <option>Regular (turbia, ribera alterada)</option>
+              <option>Cr&iacute;tico (contaminada, ribera destruida)</option>
+            </select>
+          </td>
+          <td><textarea rows="1" style="min-height:36px;"></textarea></td>
+        </tr>
+        <tr>
+          <td><strong>&#128029; Biodiversidad</strong></td>
+          <td>
+            <select style="width:100%;">
+              <option value="">Elegir</option>
+              <option>Preservada (muchas nativas, fauna activa)</option>
+              <option>Alterada (ex&oacute;ticas invasoras presentes)</option>
+              <option>Degradada (p&eacute;rdida severa de vegetaci&oacute;n)</option>
+            </select>
+          </td>
+          <td><textarea rows="1" style="min-height:36px;"></textarea></td>
+        </tr>
+        <tr>
+          <td><strong>&#128683; Impacto humano</strong></td>
+          <td>
+            <select style="width:100%;">
+              <option value="">Elegir</option>
+              <option>Bajo (pocas huellas humanas)</option>
+              <option>Medio (senderos, residuos aislados)</option>
+              <option>Alto (basura acumulada, sobrepastoreo, tala)</option>
+            </select>
+          </td>
+          <td><textarea rows="1" style="min-height:36px;"></textarea></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- PARTE H -->
+  <div class="card">
+    <div class="card-header">
+      <div class="icon icon-emerald">&#128187;</div>
+      <h2>Parte H &mdash; Armar el informe final (en el aula)</h2>
+      <span class="part-badge">EN CLASE</span>
+    </div>
+    <p><strong>&#127919; Objetivo:</strong> Con todos los datos que tomaron en el campo (Partes A a G), armen un informe que cuente c&oacute;mo es el lugar, qu&eacute; recursos tiene, en qu&eacute; estado est&aacute; y qu&eacute; se podr&iacute;a hacer para cuidarlo.</p>
+
+    <div class="metodo">
+      <span class="metodo-icon">&#128221;</span>
+      <div><strong>Pasos para el informe:</strong> Miren todas las planillas que completaron. Usen las fotos que sacaron como referencia. Dibujen un croquis del sector. Redacten todo en p&aacute;rrafos, con lenguaje formal (como si fuera un informe oficial).</div>
+    </div>
+
+    <div class="sub-card" style="border-left:4px solid #2d6a2d;">
+      <h3>&#128196; 1. Portada y resumen ejecutivo</h3>
+      <p style="font-size:0.85rem;color:#4a6a4a;margin-bottom:0.8rem;"><strong>Qu&eacute; tienen que hacer:</strong> Armen una portada con los datos del grupo. Despu&eacute;s escriban un resumen corto (menos de 150 palabras) que explique: &iquest;d&oacute;nde fueron? &iquest;qu&eacute; midieron/observaron? &iquest;cu&aacute;l es la conclusi&oacute;n principal sobre el estado del lugar?</p>
+      <div class="field"><label>&#128203; Portada: Nombre de la escuela, paraje relevado, nombres de los integrantes, fecha</label><textarea rows="2" placeholder="Ej: ESRN N° 10 - Paraje El Saltillo - Grupo 3 - Juan Pérez, Lucía Gómez, Mateo Rodríguez - 15/05/2026"></textarea></div>
+      <div class="field"><label>&#128221; Resumen ejecutivo (m&aacute;ximo 150 palabras)</label><textarea rows="4" placeholder="Ej: Se realizó un relevamiento ambiental en el paraje El Saltillo el día 15 de mayo de 2026. Se midieron indicadores de suelo, agua y biodiversidad, y se registraron los recursos naturales presentes y los impactos humanos. Se concluye que el lugar presenta un estado de conservación regular, con sectores de bosque en buen estado pero erosión incipiente en los senderos por paso de ganado."></textarea></div>
+    </div>
+
+    <div class="sub-card" style="border-left:4px solid #3a7a9a;">
+      <h3>&#127758; 2. Localizaci&oacute;n cartogr&aacute;fica</h3>
+      <p style="font-size:0.85rem;color:#4a6a4a;margin-bottom:0.8rem;"><strong>Qu&eacute; tienen que hacer:</strong> Con las coordenadas que anotaron en la Parte A, ubiquen el lugar en Google Maps o Google Earth. Saquen una captura de pantalla o dibujen un mapa simple mostrando d&oacute;nde queda el sector que relevaron.</p>
+      <div class="field"><label>&#127758; Describan d&oacute;nde queda el lugar (localidad, paraje, c&oacute;mo llegar)</label><textarea rows="2" placeholder="Ej: El Saltillo se encuentra a 15 km de la localidad de El Bolsón, sobre la Ruta Provincial 83. El sector relevado fue la margen este del arroyo, a 200 m del puente principal."></textarea></div>
+      <div class="field"><label>&#128206; Herramienta que usaron y/o URL del mapa</label><input type="text" placeholder="Ej: Google Earth - coordenadas 41°59' S 71°31' O"></div>
+    </div>
+
+    <div class="sub-card" style="border-left:4px solid #8a6a2a;">
+      <h3>&#127793; 3. Resultados del inventario</h3>
+      <p style="font-size:0.85rem;color:#4a6a4a;margin-bottom:0.8rem;"><strong>Qu&eacute; tienen que hacer:</strong> Cuenten qu&eacute; recursos naturales encontraron (agua, bosque, flora, fauna, etc.) y c&oacute;mo se relacionan entre s&iacute;. Ordenen las fotos que sacaron con un n&uacute;mero y un pie de foto que explique qu&eacute; muestra cada una.</p>
+      <textarea rows="5" placeholder="Ej: En el sector relevado se identificó un arroyo de aproximadamente 2 m de ancho con agua cristalina y vegetación ribereña abundante. La cobertura boscosa está dominada por especies nativas como coihue y arrayán, con sotobosque de caña coligüe. Se registró fauna silvestre como zorros y aves rapaces. No se observaron especies exóticas invasoras en el sector."></textarea>
+    </div>
+
+    <div class="sub-card" style="border-left:4px solid #7a4a2a;">
+      <h3>&#128220; 4. Croquis anal&iacute;tico (dibujo del sector)</h3>
+      <p style="font-size:0.85rem;color:#4a6a4a;margin-bottom:0.8rem;"><strong>Qu&eacute; tienen que hacer:</strong> En una hoja aparte (cuadriculada A4) dibujen un mapa sencillo del sector que relevaron. Tiene que incluir: una flecha se&ntilde;alando el Norte, una escala (ej: 1 cm = 10 m), dibujos de los recursos que encontraron (agua, bosque, rocas, etc.) y marcar en rojo los lugares donde hay impactos (basura, senderos, fogones). Despu&eacute;s describan ac&aacute; lo que dibujaron.</p>
+      <div class="field"><label>&#128220; Describan qu&eacute; dibujaron en el croquis (qu&eacute; recursos marcaron, d&oacute;nde, qu&eacute; colores usaron, qu&eacute; impactos se&ntilde;alaron)</label><textarea rows="3" placeholder="Ej: Se dibujó el recorrido del arroyo en azul, la zona de bosque en verde, y se marcaron con rojo dos puntos: un fogón activo cerca de la orilla y un sector de suelo erosionado por el paso de vehículos."></textarea></div>
+    </div>
+
+    <div class="sub-card" style="border-left:4px solid #2a6a4a;">
+      <h3>&#127962; 5. Evaluaci&oacute;n tur&iacute;stica</h3>
+      <p style="font-size:0.85rem;color:#4a6a4a;margin-bottom:0.8rem;"><strong>Qu&eacute; tienen que hacer:</strong> Piensen si el lugar podr&iacute;a recibir visitantes sin arruinarse. ¿Qu&eacute; actividades se podr&iacute;an hacer? ¿Cu&aacute;les no?</p>
+      <div class="field"><label>&#128064; &iquest;El lugar puede recibir turistas sin que se degrade? &iquest;Por qu&eacute;?</label><textarea rows="2" placeholder="Ej: Sí, porque tiene senderos naturales, un arroyo y bosque en buen estado. Pero con límites: grupos chicos y sin vehículos."></textarea></div>
+      <div class="field"><label>&#127795; Actividades que S&Iacute; se podr&iacute;an hacer (compatibles con cuidar el ambiente)</label><textarea rows="2" placeholder="Ej: Senderismo guiado por los senderos existentes, observación de aves, fotografía de naturaleza, picnic en zonas designadas."></textarea></div>
+      <div class="field"><label>&#128683; Actividades que habr&iacute;a que PROHIBIR</label><textarea rows="2" placeholder="Ej: Ingreso de vehículos 4x4 o motos fuera de los caminos, camping libre con fogones, dejar residuos, talar árboles para leña."></textarea></div>
+    </div>
+    <div class="sub-card">
+      <h3>6. Plan de acci&oacute;n &mdash; 5 propuestas</h3>
+      <p style="font-size:0.82rem;color:#5a7a5a;margin-bottom:0.8rem;">Piensen en 5 acciones concretas para cuidar el lugar que relevaron. Por cada acci&oacute;n completen los 4 campos de la tarjeta.</p>
+
+      <div class="info-box" style="margin-bottom:1rem;">
+        <strong>&#128161; Ejemplo:</strong><br>
+        <strong>Acci&oacute;n:</strong> "Colocar carteles se&ntilde;alizadores en los senderos"<br>
+        <strong>&#128221; Fundamentaci&oacute;n:</strong> "En la Parte F registramos senderos informales con grado 2 (muy frecuente). Los carteles ayudar&iacute;an a concentrar el tr&aacute;nsito en un solo camino."<br>
+        <strong>&#128101; Actores:</strong> Estudiantes de la ESRN, Comisi&oacute;n de Fomento, guardambientales del municipio.<br>
+        <strong>&#127919; Impacto esperado:</strong> Reducir la erosi&oacute;n del suelo y proteger la vegetaci&oacute;n nativa en 6 meses.
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;">
+        <div style="background:#eaf4ea;border-radius:14px;padding:0.8rem 1rem;border:1px solid #c8dcc8;">
+          <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;">
+            <span style="background:#2d6a2d;color:#fff;width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;flex-shrink:0;">1</span>
+            <input type="text" placeholder="Ej: Colocar carteles se&ntilde;alizadores" style="font-weight:600;border:none;border-bottom:1.5px dashed #8ab88a;border-radius:0;padding:0.2rem 0;background:transparent;">
+          </div>
+          <div class="field" style="margin-bottom:0.3rem;"><label style="font-size:0.72rem;color:#4a7a4a;">&#128221; Fundamentaci&oacute;n (datos de campo que justifican esta acci&oacute;n)</label><textarea rows="1" style="font-size:0.82rem;min-height:32px;"></textarea></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;">
+            <div class="field" style="margin-bottom:0;"><label style="font-size:0.72rem;color:#4a7a4a;">&#128101; Actores (&iquest;qui&eacute;nes lo har&iacute;an?)</label><input type="text" style="font-size:0.82rem;"></div>
+            <div class="field" style="margin-bottom:0;"><label style="font-size:0.72rem;color:#4a7a4a;">&#127919; Impacto esperado (&iquest;qu&eacute; va a mejorar?)</label><input type="text" style="font-size:0.82rem;"></div>
+          </div>
+        </div>
+
+        <div style="background:#eaf4ea;border-radius:14px;padding:0.8rem 1rem;border:1px solid #c8dcc8;">
+          <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;">
+            <span style="background:#2d6a2d;color:#fff;width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;flex-shrink:0;">2</span>
+            <input type="text" placeholder="Nombre de la acci&oacute;n" style="font-weight:600;border:none;border-bottom:1.5px dashed #8ab88a;border-radius:0;padding:0.2rem 0;background:transparent;">
+          </div>
+          <div class="field" style="margin-bottom:0.3rem;"><label style="font-size:0.72rem;color:#4a7a4a;">&#128221; Fundamentaci&oacute;n (datos de campo que justifican esta acci&oacute;n)</label><textarea rows="1" style="font-size:0.82rem;min-height:32px;"></textarea></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;">
+            <div class="field" style="margin-bottom:0;"><label style="font-size:0.72rem;color:#4a7a4a;">&#128101; Actores (&iquest;qui&eacute;nes lo har&iacute;an?)</label><input type="text" style="font-size:0.82rem;"></div>
+            <div class="field" style="margin-bottom:0;"><label style="font-size:0.72rem;color:#4a7a4a;">&#127919; Impacto esperado (&iquest;qu&eacute; va a mejorar?)</label><input type="text" style="font-size:0.82rem;"></div>
+          </div>
+        </div>
+
+        <div style="background:#eaf4ea;border-radius:14px;padding:0.8rem 1rem;border:1px solid #c8dcc8;">
+          <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;">
+            <span style="background:#2d6a2d;color:#fff;width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;flex-shrink:0;">3</span>
+            <input type="text" placeholder="Nombre de la acci&oacute;n" style="font-weight:600;border:none;border-bottom:1.5px dashed #8ab88a;border-radius:0;padding:0.2rem 0;background:transparent;">
+          </div>
+          <div class="field" style="margin-bottom:0.3rem;"><label style="font-size:0.72rem;color:#4a7a4a;">&#128221; Fundamentaci&oacute;n (datos de campo que justifican esta acci&oacute;n)</label><textarea rows="1" style="font-size:0.82rem;min-height:32px;"></textarea></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;">
+            <div class="field" style="margin-bottom:0;"><label style="font-size:0.72rem;color:#4a7a4a;">&#128101; Actores (&iquest;qui&eacute;nes lo har&iacute;an?)</label><input type="text" style="font-size:0.82rem;"></div>
+            <div class="field" style="margin-bottom:0;"><label style="font-size:0.72rem;color:#4a7a4a;">&#127919; Impacto esperado (&iquest;qu&eacute; va a mejorar?)</label><input type="text" style="font-size:0.82rem;"></div>
+          </div>
+        </div>
+
+        <div style="background:#eaf4ea;border-radius:14px;padding:0.8rem 1rem;border:1px solid #c8dcc8;">
+          <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;">
+            <span style="background:#2d6a2d;color:#fff;width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;flex-shrink:0;">4</span>
+            <input type="text" placeholder="Nombre de la acci&oacute;n" style="font-weight:600;border:none;border-bottom:1.5px dashed #8ab88a;border-radius:0;padding:0.2rem 0;background:transparent;">
+          </div>
+          <div class="field" style="margin-bottom:0.3rem;"><label style="font-size:0.72rem;color:#4a7a4a;">&#128221; Fundamentaci&oacute;n (datos de campo que justifican esta acci&oacute;n)</label><textarea rows="1" style="font-size:0.82rem;min-height:32px;"></textarea></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;">
+            <div class="field" style="margin-bottom:0;"><label style="font-size:0.72rem;color:#4a7a4a;">&#128101; Actores (&iquest;qui&eacute;nes lo har&iacute;an?)</label><input type="text" style="font-size:0.82rem;"></div>
+            <div class="field" style="margin-bottom:0;"><label style="font-size:0.72rem;color:#4a7a4a;">&#127919; Impacto esperado (&iquest;qu&eacute; va a mejorar?)</label><input type="text" style="font-size:0.82rem;"></div>
+          </div>
+        </div>
+
+        <div style="background:#eaf4ea;border-radius:14px;padding:0.8rem 1rem;border:1px solid #c8dcc8;grid-column:1/-1;max-width:50%;justify-self:center;width:100%;">
+          <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;">
+            <span style="background:#2d6a2d;color:#fff;width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;flex-shrink:0;">5</span>
+            <input type="text" placeholder="Nombre de la acci&oacute;n" style="font-weight:600;border:none;border-bottom:1.5px dashed #8ab88a;border-radius:0;padding:0.2rem 0;background:transparent;">
+          </div>
+          <div class="field" style="margin-bottom:0.3rem;"><label style="font-size:0.72rem;color:#4a7a4a;">&#128221; Fundamentaci&oacute;n (datos de campo que justifican esta acci&oacute;n)</label><textarea rows="1" style="font-size:0.82rem;min-height:32px;"></textarea></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;">
+            <div class="field" style="margin-bottom:0;"><label style="font-size:0.72rem;color:#4a7a4a;">&#128101; Actores (&iquest;qui&eacute;nes lo har&iacute;an?)</label><input type="text" style="font-size:0.82rem;"></div>
+            <div class="field" style="margin-bottom:0;"><label style="font-size:0.72rem;color:#4a7a4a;">&#127919; Impacto esperado (&iquest;qu&eacute; va a mejorar?)</label><input type="text" style="font-size:0.82rem;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-card" style="border-left:4px solid #6a4a8a;">
+      <h3>&#128172; 7. Dimensi&oacute;n social: la memoria del territorio (entrevista)</h3>
+      <p style="font-size:0.85rem;color:#4a6a4a;margin-bottom:0.8rem;"><strong>Qu&eacute; tienen que hacer:</strong> Conversen brevemente con un poblador local, criancero o vecino mayor del lugar. Preg&uacute;ntenle c&oacute;mo era el paraje antes y si nota cambios. Transcriban ac&aacute; las ideas principales de la charla.</p>
+      <div class="info-box" style="margin-bottom:0.8rem;">
+        <strong>&#128161; Preguntas sugeridas:</strong><br>
+        &bull; &iquest;C&oacute;mo era este lugar hace 20 o 30 a&ntilde;os?<br>
+        &bull; &iquest;El agua de los arroyos o mallines baj&oacute; o se mantiene igual?<br>
+        &bull; &iquest;Qu&eacute; plantas o animales nuevos aparecieron y cu&aacute;les ya casi no se ven?
+      </div>
+      <div class="field"><label>&#128172; Nombre del entrevistado y relaci&oacute;n con el lugar</label><input type="text" placeholder="Ej: Don Ramón Huentelaf, poblador del paraje hace 40 años"></div>
+      <div class="field"><label>&#128221; Ideas principales de la conversaci&oacute;n</label><textarea rows="4" placeholder="Ej: Don Ramón contó que antes el arroyo traía más agua durante todo el año, pero desde hace 10 años baja mucho en verano. También mencionó que antes se veían más zorros y guanacos, y que ahora hay más liebres europeas y jabalíes que antes no estaban."></textarea></div>
+    </div>
+
+    <div class="sub-card" style="border-left:4px solid #8a6a4a;">
+      <h3>&#128250; 8. Socializaci&oacute;n comunitaria: devoluci&oacute;n al paraje</h3>
+      <p style="font-size:0.85rem;color:#4a6a4a;margin-bottom:0.8rem;"><strong>Qu&eacute; tienen que hacer:</strong> Piensen una forma concreta de compartir sus conclusiones y las 5 propuestas del Plan de Acci&oacute;n con la comunidad del paraje. No puede quedarse todo guardado en la carpeta del aula.</p>
+      <div class="info-box" style="margin-bottom:0.8rem;">
+        <strong>&#128161; Ideas:</strong> Un folleto digital para la Comisi&oacute;n de Fomento, un afiche para el Centro Comunitario o la Escuela Rural, un micro radial para la radio local, una publicaci&oacute;n en redes sociales de la escuela.
+      </div>
+      <div class="grid-2">
+        <div class="field" style="margin-bottom:0;"><label>&#128250; &iquest;Qu&eacute; soporte van a usar?</label><input type="text" placeholder="Ej: Folleto digital / Afiche impreso / Micro radial / Redes"></div>
+        <div class="field" style="margin-bottom:0;"><label>&#128101; &iquest;A qui&eacute;nes estar&aacute; dirigido?</label><input type="text" placeholder="Ej: Vecinos del paraje, Comisión de Fomento, Escuela Rural"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FINAL -->
+  <div class="card" style="border:2px solid #2d6a2d;background:linear-gradient(135deg,#f4f9f4,#eaf4ea);">
+    <div class="card-header">
+      <div class="icon icon-green">&#128203;</div>
+      <h2 style="color:#0a2a0a;">Evaluaci&oacute;n y producto final</h2>
+    </div>
+    <p style="font-size:0.92rem;">Para la aprobaci&oacute;n se considerar&aacute;:</p>
+    <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1rem;">
+      <span style="background:#dcecdc;padding:0.3rem 0.8rem;border-radius:10px;font-size:0.82rem;">&#128221; Rigurosidad en datos de campo</span>
+      <span style="background:#dcecdc;padding:0.3rem 0.8rem;border-radius:10px;font-size:0.82rem;">&#128300; Precisi&oacute;n en clasificaciones</span>
+      <span style="background:#dcecdc;padding:0.3rem 0.8rem;border-radius:10px;font-size:0.82rem;">&#127758; Calidad de la cartograf&iacute;a</span>
+      <span style="background:#dcecdc;padding:0.3rem 0.8rem;border-radius:10px;font-size:0.82rem;">&#128196; Coherencia del informe final</span>
+    </div>
+    <hr>
+    <p style="font-size:0.92rem;"><strong>&#128203; Producto final:</strong> Cada grupo presenta un <strong>Informe de Relevamiento Ambiental</strong> + <strong>Inventario de Recursos Naturales</strong> + <strong>Croquis o mapa</strong> + <strong>Registro fotogr&aacute;fico</strong> + <strong>Valoraci&oacute;n fundamentada</strong> de la salud ambiental del sitio.</p>
+  </div>
+
+  <button class="btn-print" onclick="window.print()">&#128424; Imprimir / Guardar como PDF</button>
+
+  <p style="text-align:center;font-size:0.75rem;color:#8aaa8a;margin-top:1.5rem;">ESRN &mdash; Proyecto de Investigaci&oacute;n Territorial &mdash; Documento optimizado para impresi&oacute;n</p>
+
+</div>
+</body>
+</html>
